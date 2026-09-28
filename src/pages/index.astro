@@ -1,11 +1,32 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Import all your 11 JSX sections
+import Hero from '../components/hero/Hero.jsx';
+import TrustStats from '../components/trust-stats/TrustStats.jsx';
+import AgentProblem from '../components/agent-problem/AgentProblem.jsx';
+import PlatformSolution from '../components/platform-solution/PlatformSolution.jsx';
+import CoreFeatures from '../components/core-features/CoreFeatures.jsx';
+import ProductScreenshots from '../components/product-screenshots/ProductScreenshots.jsx';
+import WhyChooseUs from '../components/why-choose-us/WhyChooseUs.jsx';
+import AgentTestimonial from '../components/agent-testimonial/AgentTestimonial.jsx';
+import FAQ from '../components/faq/FAQ.jsx';
+import FinalCTA from '../components/final-cta/FinalCTA.jsx';
+import Footer from '../components/footer/Footer.jsx';
 ---
 
 <Layout>
-	<Welcome />
+  <main class="min-h-screen bg-white text-neutral-900 selection:bg-cyan-500 selection:text-white">
+    <Hero client:load />
+    <TrustStats />
+    <AgentProblem />
+    <PlatformSolution />
+    <CoreFeatures />
+    <ProductScreenshots />
+    <WhyChooseUs />
+    <AgentTestimonial />
+    <FAQ client:load />
+    <FinalCTA />
+    <Footer />
+  </main>
 </Layout>
