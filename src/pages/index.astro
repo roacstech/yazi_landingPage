@@ -13,20 +13,17 @@ import AgentTestimonial from '../components/agent-testimonial/AgentTestimonial.j
 import FAQ from '../components/faq/FAQ.jsx';
 import FinalCTA from '../components/final-cta/FinalCTA.jsx';
 import Footer from '../components/footer/Footer.jsx';
+
+import { getActiveYaziAirlines } from '../utils/airlines';
+
+// Fetch airlines cleanly via utility function (Server-side for fast load, SEO, and zero CORS issues)
+const airlines = await getActiveYaziAirlines();
 ---
 
 <Layout>
   <main class="min-h-screen bg-white text-neutral-900 selection:bg-cyan-500 selection:text-white">
-    <Hero client:load />
-    <TrustStats />
-    <AgentProblem client:visible />
-    <PlatformSolution />
-    <CoreFeatures />
-    <ProductScreenshots />
-    <WhyChooseUs />
-    <AgentTestimonial />
-    <FAQ client:load />
-    <FinalCTA />
-    <Footer />
+    <!--<Hero client:load />-->
+    <TrustStats client:visible airlines={airlines} />
+    <!--<AgentProblem />-->
   </main>
 </Layout>
