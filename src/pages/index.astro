@@ -22,8 +22,11 @@ const airlines = await getActiveYaziAirlines();
 
 <Layout>
   <main class="min-h-screen bg-white text-neutral-900 selection:bg-cyan-500 selection:text-white">
-    <!--<Hero client:load />-->
+    <Hero client:load />
     <TrustStats client:visible airlines={airlines} />
     <!--<AgentProblem />-->
+    <AgentTestimonial/>
+    <WhyChooseUs />
+    <Footer />
   </main>
 </Layout>
