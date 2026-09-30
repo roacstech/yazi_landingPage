@@ -24,6 +24,18 @@ const airlines = await getActiveYaziAirlines();
   <main class="min-h-screen bg-white text-neutral-900 selection:bg-cyan-500 selection:text-white">
     <!--<Hero client:load />-->
     <TrustStats client:visible airlines={airlines} />
-    <!--<AgentProblem />-->
+
+    <!-- Agent's Challenge & Platform Solution with scenic background -->
+    <div class="relative w-full overflow-hidden bg-[#F6FAFF]">
+      <img
+        src="/TrustStats/image.png"
+        alt=""
+        class="absolute inset-0 w-full h-full object-fill pointer-events-none select-none"
+        style="object-fit: fill;"
+      />
+      <div class="relative z-10">
+        <PlatformSolution client:visible />
+      </div>
+    </div>
   </main>
 </Layout>

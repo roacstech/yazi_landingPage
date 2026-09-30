@@ -2,100 +2,107 @@ import React from 'react';
 
 const PROBLEMS = [
   {
+    iconBg: 'bg-rose-50',
     icon: (
-      <svg className="w-6 h-6 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      <svg className="w-6 h-6 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
       </svg>
     ),
-    title: 'Multiple Disconnected Portals',
-    description:
-      'Agents waste valuable time switching between different GDS systems, airline NDC platforms, and budget carrier websites just to compare fares for one inquiry.'
+    title: 'Slow Manual Search',
+    description: 'Checking multiple websites takes time and reduces productivity.'
   },
   {
+    iconBg: 'bg-amber-50',
     icon: (
-      <svg className="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <svg className="w-6 h-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
       </svg>
     ),
-    title: 'Slow & Manual Ticket Issuance',
-    description:
-      'Waiting for offline consolidator queues often causes airline fare holds to expire, resulting in missed booking windows and unexpected fare increases.'
+    title: 'Fare Changes Before Booking',
+    description: 'Prices change frequently, leading to lost sales and unhappy customers.'
   },
   {
+    iconBg: 'bg-indigo-50',
     icon: (
-      <svg className="w-6 h-6 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <svg className="w-6 h-6 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
       </svg>
     ),
-    title: 'Hidden Fees & Squeezed Margins',
-    description:
-      'Unclear net fares and hidden intermediary charges erode your agency profits, making it difficult to control customer markups effectively.'
+    title: 'Too Many Disconnected Tools',
+    description: 'Multiple systems and logins make the booking process inefficient.'
   },
   {
+    iconBg: 'bg-rose-50',
     icon: (
-      <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      <svg className="w-6 h-6 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h4m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M14 14l4 4m0-4l-4 4" />
       </svg>
     ),
-    title: 'Complicated Reschedules & Refunds',
-    description:
-      'Handling date changes and passenger cancellations manually requires long wait times with airline support desks and complex penalty recalculations.'
+    title: 'Hard to Manage Bookings',
+    description: 'Managing PNRs, changes and cancellations across different channels is difficult.'
   }
 ];
 
 export default function AgentProblem() {
   return (
-    <section id="problem" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-neutral-50/70 border-b border-neutral-200">
-      <div className="max-w-6xl mx-auto">
+    <section id="problem" className="relative pt-10 sm:pt-14 pb-2 px-4 sm:px-6 lg:px-8 bg-transparent">
+      <div className="max-w-5xl mx-auto">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-sky-700 bg-sky-100/80 mb-4">
-            The Agent's Challenge
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-9">
+          <span className="inline-block px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#0066FF] bg-[#EBF4FF]/90 border border-[#D0E5FF] mb-3 sm:mb-4 shadow-2xs backdrop-blur-xs">
+            THE AGENT'S CHALLENGE
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 tracking-tight mb-4">
-            Why Traditional Flight Booking Slows Your Agency Down
+          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-[#0B1B3D] tracking-tight leading-tight mb-3">
+            Why Traditional Flight Booking Slows Your Agency
           </h2>
-          <p className="text-base sm:text-lg text-neutral-600 leading-relaxed">
-            Booking flights for your customers should be fast and straightforward. Yet most travel agencies still struggle with disconnected tools, manual workflows, and unpredictable pricing.
+          <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-xl mx-auto">
+            Manual processes, scattered tools, and constant fare changes make flight booking time-consuming and frustrating for travel agents.
           </p>
         </div>
 
-        {/* 4 Clean Problem Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-16">
+        {/* 2x2 Problem Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6">
           {PROBLEMS.map((problem, index) => (
             <div
               key={index}
-              className="p-6 sm:p-8 bg-white rounded-2xl border border-neutral-200/80 shadow-sm hover:shadow-md transition-shadow"
+              className="p-5 sm:p-6 bg-white/95 backdrop-blur-xs rounded-2xl border border-white/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] hover:shadow-lg hover:border-sky-200 transition-all flex items-center gap-4 sm:gap-5"
             >
-              <div className="w-12 h-12 rounded-xl bg-neutral-100 flex items-center justify-center mb-5">
+              <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${problem.iconBg} flex items-center justify-center shrink-0`}>
                 {problem.icon}
               </div>
-              <h3 className="text-xl font-semibold text-neutral-900 mb-2.5">
-                {problem.title}
-              </h3>
-              <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
-                {problem.description}
-              </p>
+              <div>
+                <h3 className="text-base sm:text-lg font-bold text-[#0B1B3D] tracking-tight mb-1">
+                  {problem.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed font-normal">
+                  {problem.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Simple & Clean Solution Bridge Card */}
-        <div className="rounded-2xl p-8 sm:p-10 bg-gradient-to-r from-sky-900 to-indigo-950 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
-          <div className="max-w-2xl">
-            <h3 className="text-xl sm:text-2xl font-bold mb-2">
-              Your agency deserves a unified, faster way to book flights.
-            </h3>
-            <p className="text-sm sm:text-base text-sky-100/90 leading-relaxed">
-              Yazi Travels brings major GDS providers, NDC fares, and low-cost airlines into a single, easy-to-use platform with instant ticketing.
-            </p>
-          </div>
+        {/* Centered Vertical Connector Line with Down Arrow */}
+        <div className="flex flex-col items-center justify-center pt-2 pb-0">
+          <div className="w-px h-7 border-l-2 border-dashed border-sky-300"></div>
           <a
             href="#platform-solution"
-            className="shrink-0 px-6 py-3 rounded-xl bg-white text-neutral-900 font-semibold text-sm hover:bg-sky-50 transition-colors shadow-sm"
+            aria-label="Scroll to Yazi Solution"
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById('platform-solution');
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+                window.history.pushState(null, '', '#platform-solution');
+              }
+            }}
+            className="w-8 h-8 rounded-full bg-white text-[#0066FF] border border-[#D0E5FF] flex items-center justify-center hover:scale-110 transition-transform shadow-sm cursor-pointer mt-1"
           >
-            See How Yazi Solves This
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
           </a>
         </div>
 
