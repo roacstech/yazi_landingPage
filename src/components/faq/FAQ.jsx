@@ -54,37 +54,38 @@ export default function FAQ() {
 
   return (
     <section
-      className="relative w-full py-16 sm:py-20 lg:py-24"
+      id="faq"
+      className="relative w-full pt-6 sm:pt-8 lg:pt-10 pb-16 sm:pb-20 lg:pb-24"
       style={{
-        background: "linear-gradient(180deg, #CEE5FD 0%, #DDF0FE 25%, #EDF6FE 55%, #FFFFFF 100%)",
+        background: "linear-gradient(180deg, #FFFFFF 0%, #F2F7FE 25%, #EAF3FD 60%, #FFFFFF 100%)",
       }}
     >
-      {/* Main Responsive Split Layout with Generous Center Breathing Room */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-14 flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-16 xl:gap-24">
+      {/* Top seamless blend from previous section */}
+      <div className="pointer-events-none absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-white to-transparent" />
+
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-8 md:px-10">
         
-        {/* LEFT COLUMN: Badge, Headline & Subtitle */}
-        <div className="w-full lg:max-w-[440px] flex flex-col text-left shrink-0">
-          {/* Badge: — FAQ */}
-          <div className="flex items-center gap-2 text-[#0066FF] text-xs sm:text-sm font-bold tracking-widest uppercase mb-3 sm:mb-4">
-            <span className="w-5 h-0.5 bg-[#0066FF] rounded-full"></span>
-            <span>FAQ</span>
+        {/* Main Section Header - Centered like previous sections */}
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <div className="flex items-center justify-center gap-2.5 mb-2.5">
+            <span className="w-6 h-[2px] bg-[#DC2626] rounded-full"></span>
+            <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.22em] text-[#0B1B3D]">
+              FAQ
+            </span>
+            <span className="w-6 h-[2px] bg-[#DC2626] rounded-full"></span>
           </div>
 
-          {/* Headline */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[#0B1B3D] tracking-tight leading-[1.15]">
-            Simple Answers <br />
-            for a Smoother <br />
-            <span className="text-[#0066FF]">Booking Experience</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-black text-[#0B1B3D] tracking-tight leading-tight mb-2.5">
+            Simple Answers for a Smoother <span className="text-[#DC2626]">Booking Experience.</span>
           </h2>
 
-          {/* Subtitle */}
-          <p className="mt-4 sm:mt-5 text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-[15px] text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
             Find quick answers about our B2B agent booking platform, direct net fares, sub-agent permissions, and ticketing operations.
           </p>
         </div>
 
-        {/* RIGHT COLUMN: Generous Breathing Room, Right-Aligned Straight + Column */}
-        <div className="w-full lg:max-w-[560px] flex flex-col divide-y divide-[#BFDAF7] border-t border-b border-[#BFDAF7]">
+        {/* Centered Accordion Column */}
+        <div className="w-full max-w-3xl mx-auto flex flex-col divide-y divide-[#BFDAF7] border-t border-b border-[#BFDAF7]">
           {FAQ_DATA.map((item) => {
             const isOpen = openId === item.id;
 

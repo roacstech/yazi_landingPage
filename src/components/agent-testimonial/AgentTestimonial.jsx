@@ -1,4 +1,4 @@
-﻿// NOTE: These are sample testimonials for layout purposes. Replace the names,
+// NOTE: These are sample testimonials for layout purposes. Replace the names,
 // roles, and quotes with real feedback from your agents before publishing.
 const testimonials = [
   {
@@ -125,7 +125,7 @@ export default function AgentTestimonial() {
   const rowTwo = [...testimonials.slice(3), ...testimonials.slice(0, 3)];
 
   return (
-    <section className="relative overflow-hidden bg-neutral-50 py-16 md:py-24">
+    <section id="testimonials" className="relative overflow-hidden bg-white pt-4 sm:pt-6 md:pt-8 pb-6 sm:pb-8 md:pb-10">
       {/* Animation styles */}
       <style>{`
         @keyframes marquee-left {
@@ -145,23 +145,26 @@ export default function AgentTestimonial() {
       `}</style>
 
       {/* Soft background accents */}
-      <div className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
-      <div className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-blue-100/60 blur-3xl" />
+      <div className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-blue-50/60 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-indigo-50/60 blur-3xl" />
 
       <div className="relative z-10">
-        {/* Heading */}
-        <div className="mx-auto mb-10 max-w-2xl px-6 text-center md:mb-14">
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-red-600">
-            <span className="h-1.5 w-1.5 rounded-full bg-red-600" />
-            Agent Testimonials
-          </span>
-          <h2 className="mb-3 text-2xl font-bold leading-tight text-neutral-900 md:text-4xl">
-            Trusted by agents who{" "}
-            <span className="text-red-600">move faster</span>
+        {/* Main Section Header - Centered like previous sections */}
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 px-4">
+          <div className="flex items-center justify-center gap-2.5 mb-2.5">
+            <span className="w-6 h-[2px] bg-[#DC2626] rounded-full"></span>
+            <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.22em] text-[#0B1B3D]">
+              AGENT TESTIMONIALS
+            </span>
+            <span className="w-6 h-[2px] bg-[#DC2626] rounded-full"></span>
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-black text-[#0B1B3D] tracking-tight leading-tight mb-2.5">
+            Trusted by agents who <span className="text-[#DC2626]">move faster.</span>
           </h2>
-          <p className="text-sm text-neutral-600 md:text-base">
-            Hear from travel agents who use Yazi Travels to search fares,
-            manage bookings, and grow their business.
+
+          <p className="text-xs sm:text-sm md:text-[15px] text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
+            Hear from travel agents who use Yazi Travels to search fares, manage bookings, and grow their business.
           </p>
         </div>
 
@@ -171,8 +174,8 @@ export default function AgentTestimonial() {
           <MarqueeRow items={rowTwo} reverse duration={55} />
 
           {/* Edge fades */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-neutral-50 to-transparent md:w-40" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-neutral-50 to-transparent md:w-40" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent md:w-40" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent md:w-40" />
         </div>
       </div>
     </section>

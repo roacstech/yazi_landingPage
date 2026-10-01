@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 
@@ -51,10 +51,6 @@ const features = [
   },
 ];
 
-const serif = {
-  fontFamily: "'Fraunces', Georgia, serif",
-};
-
 function CheckIcon({ className = "h-3.5 w-3.5" }) {
   return (
     <svg
@@ -74,13 +70,7 @@ function CheckIcon({ className = "h-3.5 w-3.5" }) {
 function PreviewTitle({ children, aside }) {
   return (
     <div className="mb-5 flex items-baseline justify-between gap-4">
-      <h4
-        className="text-xl text-[#0E1B33]"
-        style={{
-          ...serif,
-          fontWeight: 500,
-        }}
-      >
+      <h4 className="text-lg sm:text-xl font-bold text-[#0B1B3D]">
         {children}
       </h4>
 
@@ -136,20 +126,20 @@ function SupportPreview() {
 function FaresPreview() {
   const fares = [
     {
-      route: "Delhi to Dubai",
-      time: "06:40 – 09:10",
-      price: "₹18,450",
+      route: "MSP to NBO",
+      time: "07:30 – 19:45 (+1)",
+      price: "$780",
       best: true,
     },
     {
-      route: "Delhi to Dubai",
-      time: "11:15 – 13:45",
-      price: "₹19,200",
+      route: "JFK to NBO",
+      time: "11:20 – 10:15 (+1)",
+      price: "$825",
     },
     {
-      route: "Delhi to Dubai",
-      time: "22:30 – 01:00",
-      price: "₹20,050",
+      route: "IAD to NBO",
+      time: "17:45 – 15:30 (+1)",
+      price: "$860",
     },
   ];
 
@@ -157,8 +147,8 @@ function FaresPreview() {
     <div>
       <PreviewTitle
         aside={
-          <span className="flex items-center gap-1.5 text-xs font-medium text-[#A61E2B]">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#A61E2B]" />
+          <span className="flex items-center gap-1.5 text-xs font-medium text-[#DC2626]">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#DC2626]" />
             Live
           </span>
         }
@@ -172,33 +162,27 @@ function FaresPreview() {
             key={fare.time}
             className={
               fare.best
-                ? "!border-[#A61E2B]/40 !bg-[#FCF6F6]"
+                ? "!border-[#DC2626]/40 !bg-[#FCF6F6]"
                 : ""
             }
           >
             <div>
-              <div className="text-sm font-medium text-[#0E1B33]">
+              <div className="text-sm font-semibold text-[#0B1B3D]">
                 {fare.route}
               </div>
 
-              <div className="mt-0.5 text-xs text-[#5B6478]">
+              <div className="mt-0.5 text-xs text-slate-500">
                 {fare.time}
               </div>
             </div>
 
             <div className="text-right">
-              <div
-                className="text-base text-[#0E1B33]"
-                style={{
-                  ...serif,
-                  fontWeight: 600,
-                }}
-              >
+              <div className="text-base font-bold text-[#0B1B3D]">
                 {fare.price}
               </div>
 
               {fare.best && (
-                <div className="mt-0.5 text-[11px] font-medium text-[#A61E2B]">
+                <div className="mt-0.5 text-[11px] font-semibold text-[#DC2626]">
                   Best net fare
                 </div>
               )}
@@ -314,29 +298,28 @@ export default function WhyChooseUs() {
   const handleContactClick = () => {
     const form = document.getElementById("contact-form");
 
-    if (!form) return;
+    if (form) {
+      form.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
 
-    form.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-
-    setTimeout(() => {
-      document.getElementById("name")?.focus();
-    }, 700);
+      setTimeout(() => {
+        document.getElementById("name")?.focus();
+      }, 700);
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
   const Preview = previews[active];
 
   return (
-    <section className="relative overflow-hidden bg-[#F5F6F8] px-5 py-16 md:px-8 md:py-20">
+    <section id="why-choose-us" className="relative overflow-hidden bg-white px-5 pt-4 pb-6 md:px-8 md:pt-6 md:pb-10">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap');
-
-        .wcu {
-          font-family: 'Instrument Sans', system-ui, sans-serif;
-        }
-
         @keyframes feature-progress {
           from {
             height: 0%;
@@ -360,40 +343,34 @@ export default function WhyChooseUs() {
         }
       `}</style>
 
-      {/* BACKGROUND GRID */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage:
-            "linear-gradient(#0E1B33 1px, transparent 1px), linear-gradient(90deg, #0E1B33 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
+      {/* Subtle Ambient Glow */}
+      <div className="pointer-events-none absolute -left-32 top-[20%] h-[440px] w-[440px] rounded-full bg-blue-50/50 blur-[110px]" />
 
-      {/* RED GLOW */}
-      <div className="pointer-events-none absolute -left-32 top-[20%] h-[440px] w-[440px] rounded-full bg-[#F6E7E8] blur-[110px]" />
+      <div className="relative z-10 mx-auto max-w-6xl">
+        {/* Main Section Header - Centered like 1st image */}
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <div className="flex items-center justify-center gap-2.5 mb-2.5">
+            <span className="w-6 h-[2px] bg-[#DC2626] rounded-full"></span>
+            <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.22em] text-[#0B1B3D]">
+              WHY CHOOSE US
+            </span>
+            <span className="w-6 h-[2px] bg-[#DC2626] rounded-full"></span>
+          </div>
 
-      <div className="wcu relative z-10 mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-12 lg:gap-14">
+          <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-black text-[#0B1B3D] tracking-tight leading-tight mb-2.5">
+            Built for travel agents who <span className="text-[#DC2626]">expect more.</span>
+          </h2>
+
+          <p className="text-xs sm:text-sm md:text-[15px] text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
+            Quote faster, earn better margins, and support every customer with confidence.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
           {/* LEFT SIDE */}
           <div className="lg:col-span-6">
-            <h2
-              className="max-w-xl text-4xl leading-[1.08] tracking-tight text-[#0E1B33] md:text-[3.4rem]"
-              style={{
-                ...serif,
-                fontWeight: 500,
-              }}
-            >
-              Built for travel agents who expect more.
-            </h2>
-
-            <p className="mt-5 max-w-md text-base leading-relaxed text-[#5B6478]">
-              Quote faster, earn better margins, and support every customer
-              with confidence.
-            </p>
-
             {/* FEATURE LIST */}
-            <div className="mt-9">
+            <div>
               {features.map((item, index) => {
                 const isActive = active === index;
 
@@ -446,15 +423,11 @@ export default function WhyChooseUs() {
                     {/* TEXT */}
                     <span className="min-w-0 flex-1">
                       <span
-                        className={`block text-xl transition-all duration-500 ${
+                        className={`block text-lg sm:text-xl font-bold transition-all duration-300 ${
                           isActive
-                            ? "text-[#0E1B33]"
-                            : "text-[#8A93A6] group-hover:text-[#0E1B33]"
+                            ? "text-[#0B1B3D]"
+                            : "text-slate-400 group-hover:text-[#0B1B3D]"
                         }`}
-                        style={{
-                          ...serif,
-                          fontWeight: 500,
-                        }}
                       >
                         {item.title}
                       </span>
@@ -480,16 +453,13 @@ export default function WhyChooseUs() {
 
             {/* BUTTONS */}
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="https://app.yazitravels.com/register"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cursor-pointer rounded-full bg-[#FB2C36] px-7 py-3 text-center text-sm font-medium text-white shadow-[0_10px_24px_-12px_rgba(14,27,51,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#155DFC]"
+              <button
+                type="button"
+                onClick={handleContactClick}
+                className="cursor-pointer rounded-full bg-[#FB2C36] px-7 py-3 text-center text-sm font-medium text-white shadow-[0_10px_24px_-12px_rgba(14,27,51,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#155DFC] focus:outline-none focus:ring-2 focus:ring-red-500/40"
               >
-                Register your agency
-              </a>
-
-             
+                Register For Demo
+              </button>
             </div>
           </div>
 
@@ -513,13 +483,7 @@ export default function WhyChooseUs() {
                   {/* HEADER */}
                   <div className="flex items-center justify-between border-b border-[#E9ECF1] bg-white px-5 py-3.5">
                     <div className="flex items-center gap-2.5">
-                      <span
-                        className="flex h-7 w-7 items-center justify-center rounded-full bg-[#A61E2B] text-sm text-white"
-                        style={{
-                          ...serif,
-                          fontWeight: 600,
-                        }}
-                      >
+                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FB2C36] text-xs font-bold text-white">
                         Y
                       </span>
 

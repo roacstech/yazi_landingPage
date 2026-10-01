@@ -1,4 +1,4 @@
-﻿const quickLinks = [
+const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About us", href: "/about-us" },
   { label: "Our Services", href: "/our-services" },
@@ -31,10 +31,10 @@ export default function Footer() {
           © {new Date().getFullYear()} Yazi Travels. All rights reserved.
         </p>
         <div className="mt-2 flex justify-center gap-4 text-xs text-neutral-500">
-          <a href="/privacy-policy" className="transition-colors hover:text-neutral-300">
+          <a href="/#" className="transition-colors hover:text-neutral-300">
             Privacy Policy
           </a>
-          <a href="/terms-conditions" className="transition-colors hover:text-neutral-300">
+          <a href="/#" className="transition-colors hover:text-neutral-300">
             Terms & Conditions
           </a>
         </div>
