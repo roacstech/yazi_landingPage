@@ -458,7 +458,7 @@ export default function WhyChooseUs() {
                 onClick={handleContactClick}
                 className="cursor-pointer rounded-full bg-[#FB2C36] px-7 py-3 text-center text-sm font-medium text-white shadow-[0_10px_24px_-12px_rgba(14,27,51,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#155DFC] focus:outline-none focus:ring-2 focus:ring-red-500/40"
               >
-                Register For Demo
+               Request For Demo
               </button>
             </div>
           </div>

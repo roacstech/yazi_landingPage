@@ -186,7 +186,7 @@ export default function Hero() {
           className="w-full max-w-md scroll-mt-24 rounded-2xl bg-white p-6 shadow-xl md:p-8 lg:ml-auto"
         >
           <h2 className="mb-1 text-center text-xl font-bold text-neutral-900">
-            Register For Demo
+            Request For Demo
           </h2>
 
           <p className="mb-5 text-center text-sm text-neutral-500">
