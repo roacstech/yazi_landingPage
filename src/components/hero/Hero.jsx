@@ -5,8 +5,8 @@ const TYPED_WORD = "Travel agents";
 export default function Hero() {
   const [form, setForm] = useState({
     name: "",
+    phone: "",
     email: "",
-    description: "",
   });
 
   const [typed, setTyped] = useState("");
@@ -48,14 +48,59 @@ export default function Hero() {
   });
 
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    if (name === "phone") {
+      // Allow only numbers (strip alphabets and special chars)
+      const numbersOnly = value.replace(/\D/g, "");
+      setForm((prev) => ({
+        ...prev,
+        phone: numbersOnly,
+      }));
+      return;
+    }
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handlePhoneKeyDown = (e) => {
+    // Allow control and navigation keys
+    if (
+      [
+        "Backspace",
+        "Delete",
+        "Tab",
+        "Escape",
+        "Enter",
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowUp",
+        "ArrowDown",
+      ].includes(e.key) ||
+      e.ctrlKey ||
+      e.metaKey
+    ) {
+      return;
+    }
+    // Block non-digit characters (alphabets, symbols, spaces)
+    if (!/^\d$/.test(e.key)) {
+      e.preventDefault();
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!form.phone || form.phone.length < 10) {
+      setStatus({
+        loading: false,
+        success: false,
+        error: "Please enter a valid phone number (at least 10 digits).",
+      });
+      return;
+    }
+
     setStatus({ loading: true, success: false, error: null });
 
     try {
@@ -67,9 +112,9 @@ export default function Hero() {
         },
         body: JSON.stringify({
           "Name": form.name,
+          "Phone": form.phone,
           "Email": form.email,
-          "Description": form.description,
-          _subject: `New User Registration: ${form.name}`,
+          _subject: `New Demo Request: ${form.name} (${form.phone})`,
           _template: "table",
           _captcha: "false",
         }),
@@ -79,7 +124,7 @@ export default function Hero() {
 
       if (response.ok || data.success === "true" || data.success === true) {
         setStatus({ loading: false, success: true, error: null });
-        setForm({ name: "", email: "", description: "" });
+        setForm({ name: "", phone: "", email: "" });
 
         // Auto-dismiss the success toast after 4 seconds
         setTimeout(() => {
@@ -185,12 +230,12 @@ export default function Hero() {
           onSubmit={handleSubmit}
           className="w-full max-w-md scroll-mt-24 rounded-2xl bg-white p-6 shadow-xl md:p-8 lg:ml-auto"
         >
-          <h2 className="mb-1 text-center text-xl font-bold text-neutral-900">
-            Request For Demo
+          <h2 className="mb-1.5 text-center text-xl font-bold text-neutral-900 leading-snug text-balance">
+            Online Flight Booking App for Travel Agents
           </h2>
 
-          <p className="mb-5 text-center text-sm text-neutral-500">
-            Tell us how we can help your travel business.
+          <p className="mb-5 text-center text-sm font-medium text-neutral-600">
+            Request for a Demo
           </p>
 
           {/* SUCCESS BANNER */}
@@ -246,6 +291,32 @@ export default function Hero() {
               />
             </div>
 
+            {/* PHONE */}
+            <div>
+              <label
+                htmlFor="phone"
+                className="mb-1 block text-sm font-medium text-neutral-700"
+              >
+                Phone
+              </label>
+
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                maxLength={15}
+                required
+                disabled={status.loading}
+                value={form.phone}
+                onChange={handleChange}
+                onKeyDown={handlePhoneKeyDown}
+                placeholder="Your phone number"
+                className={inputClass}
+              />
+            </div>
+
             {/* EMAIL */}
             <div>
               <label
@@ -265,28 +336,6 @@ export default function Hero() {
                 onChange={handleChange}
                 placeholder="you@example.com"
                 className={inputClass}
-              />
-            </div>
-
-            {/* DESCRIPTION */}
-            <div>
-              <label
-                htmlFor="description"
-                className="mb-1 block text-sm font-medium text-neutral-700"
-              >
-                Description
-              </label>
-
-              <textarea
-                id="description"
-                name="description"
-                rows={4}
-                required
-                disabled={status.loading}
-                value={form.description}
-                onChange={handleChange}
-                placeholder="How can we help you?"
-                className={`${inputClass} resize-none`}
               />
             </div>
 
