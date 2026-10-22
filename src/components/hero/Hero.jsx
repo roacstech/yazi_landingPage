@@ -98,14 +98,51 @@ export default function Hero() {
     error: null,
   });
 
+const formatUSPhone = (value) => {
+  if (!value) return "";
+
+  // Strip all non-digits
+  let digits = value.replace(/\D/g, "");
+
+  // If the user typed or pasted with country code "1"
+  if (
+    digits.startsWith("1") &&
+    (value.startsWith("+1") ||
+      value.startsWith("+") ||
+      value.startsWith("1") ||
+      digits.length > 10)
+  ) {
+    digits = digits.slice(1);
+  }
+
+  // Cap at 10 national digits
+  digits = digits.slice(0, 10);
+
+  if (digits.length === 0) {
+    return "";
+  }
+
+  if (digits.length < 3) {
+    return `+1 (${digits}`;
+  }
+  if (digits.length === 3) {
+    return `+1 (${digits}) `;
+  }
+  if (digits.length < 6) {
+    return `+1 (${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  }
+  if (digits.length === 6) {
+    return `+1 (${digits.slice(0, 3)}) ${digits.slice(3, 6)}-`;
+  }
+  return `+1 (${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+};
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "phone") {
-      // Allow only numbers (strip alphabets and special chars)
-      const numbersOnly = value.replace(/\D/g, "");
       setForm((prev) => ({
         ...prev,
-        phone: numbersOnly,
+        phone: formatUSPhone(value),
       }));
       return;
     }
@@ -119,8 +156,6 @@ export default function Hero() {
     // Allow control and navigation keys
     if (
       [
-        "Backspace",
-        "Delete",
         "Tab",
         "Escape",
         "Enter",
@@ -134,8 +169,43 @@ export default function Hero() {
     ) {
       return;
     }
-    // Block non-digit characters (alphabets, symbols, spaces)
-    if (!/^\d$/.test(e.key)) {
+
+    if (e.key === "Backspace") {
+      const input = e.target;
+      const { selectionStart, selectionEnd, value } = input;
+      if (selectionStart !== selectionEnd) {
+        return;
+      }
+      // If cursor is at or before "+1 (", clear completely
+      if (selectionStart <= 4) {
+        e.preventDefault();
+        setForm((prev) => ({ ...prev, phone: "" }));
+        return;
+      }
+      // If backspacing right after a formatting character, delete preceding digit
+      const prevChar = value[selectionStart - 1];
+      if ([" ", "-", ")"].includes(prevChar)) {
+        e.preventDefault();
+        let cutTo = selectionStart - 1;
+        while (cutTo > 0 && [" ", "-", ")"].includes(value[cutTo - 1])) {
+          cutTo--;
+        }
+        if (cutTo > 0) {
+          cutTo--; // remove preceding digit
+        }
+        const updated = value.slice(0, cutTo) + value.slice(selectionStart);
+        setForm((prev) => ({ ...prev, phone: formatUSPhone(updated) }));
+        return;
+      }
+      return;
+    }
+
+    if (e.key === "Delete") {
+      return;
+    }
+
+    // Block non-digit characters (except '+' at start)
+    if (!/^\d$/.test(e.key) && e.key !== "+") {
       e.preventDefault();
     }
   };
@@ -143,11 +213,16 @@ export default function Hero() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!form.phone || form.phone.length < 10) {
+    const phoneDigits = form.phone.replace(/\D/g, "");
+    const nationalDigits = phoneDigits.startsWith("1")
+      ? phoneDigits.slice(1)
+      : phoneDigits;
+
+    if (nationalDigits.length < 10) {
       setStatus({
         loading: false,
         success: false,
-        error: "Please enter a valid phone number (at least 10 digits).",
+        error: "Please enter a valid 10-digit US phone number.",
       });
       return;
     }
@@ -364,14 +439,13 @@ export default function Hero() {
                 name="phone"
                 type="tel"
                 inputMode="numeric"
-                pattern="[0-9]*"
-                maxLength={15}
+                maxLength={17}
                 required
                 disabled={status.loading}
                 value={form.phone}
                 onChange={handleChange}
                 onKeyDown={handlePhoneKeyDown}
-                placeholder="Your phone number"
+                placeholder="+1 (555) 000-0000"
                 className={inputClass}
               />
             </div>
