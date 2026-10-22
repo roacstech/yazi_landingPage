@@ -315,7 +315,7 @@ export default function Hero() {
                 Registration Sent!
               </div>
               <p className="text-xs text-emerald-700 leading-relaxed pr-2">
-                Thank you! Your information has been delivered to our team at <span className="font-semibold text-emerald-900">roacstech@gmail.com</span>. We will reach out shortly.
+                Thank you! Your information has been delivered to our team. We will reach out shortly.
               </p>
             </div>
           )}
