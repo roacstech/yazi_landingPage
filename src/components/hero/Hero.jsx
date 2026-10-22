@@ -69,7 +69,7 @@ export default function Hero() {
           "Name": form.name,
           "Email": form.email,
           "Description": form.description,
-          _subject: `New User Registration: ${form.name}`,
+          _subject: `${form.name} submitted the demo request`,
           _template: "table",
           _captcha: "false",
         }),
