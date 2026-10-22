@@ -289,11 +289,11 @@ export default function Hero() {
           onSubmit={handleSubmit}
           className="w-full max-w-md scroll-mt-24 rounded-2xl bg-white px-6 pt-6 pb-14 shadow-xl md:px-8 md:pt-8 md:pb-16 lg:ml-auto"
         >
-          <h2 className="mb-1.5 text-center text-[15px] sm:text-[16.5px] md:text-[17.5px] font-bold text-neutral-900 leading-snug tracking-tight whitespace-nowrap">
+          <h2 className="mb-1.5 text-center text-[15px] sm:text-[16.5px] md:text-[17.5px] font-bold text-[#dd2c00] leading-snug tracking-tight whitespace-nowrap">
             Online Flight Booking App for Travel Agents
           </h2>
 
-          <p className="mb-5 text-center text-sm font-medium text-neutral-600">
+          <p className="mb-5 text-center text-sm font-bold text-neutral-800">
             Request for a Demo
           </p>
 
