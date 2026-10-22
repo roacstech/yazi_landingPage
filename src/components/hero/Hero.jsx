@@ -2,6 +2,57 @@ import { useState, useEffect } from "react";
 
 const TYPED_WORD = "Travel agents";
 
+const HERO_FEATURES = [
+  {
+    title: "100% Free Signup",
+    icon: (
+      <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
+  },
+  {
+    title: "Instant Commission on Day 1",
+    icon: (
+      <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+  },
+  {
+    title: "No Setup Fees",
+    icon: (
+      <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+  },
+  {
+    title: "No Minimum Targets",
+    icon: (
+      <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+      </svg>
+    ),
+  },
+  {
+    title: "Earn on Your Very First Transaction",
+    icon: (
+      <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+      </svg>
+    ),
+  },
+  {
+    title: "24/7 Local Support",
+    icon: (
+      <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+    ),
+  },
+];
+
 export default function Hero() {
   const [form, setForm] = useState({
     name: "",
@@ -209,28 +260,36 @@ export default function Hero() {
             designed for faster business
           </h1>
 
-          <p className="mb-10 max-w-2xl text-lg leading-relaxed text-neutral-200 md:text-xl lg:text-xl">
+          <p className="mb-7 max-w-2xl text-lg leading-relaxed text-neutral-200 md:text-xl lg:text-xl">
             Search global flight inventory, compare fares, manage bookings,
             and track your earnings from one powerful platform.
           </p>
 
-          {/* <a
-            href="https://app.yazitravels.com/register"
-            target="_blank"
-            rel="noopener noreferrer"
-           className="cursor-pointer rounded-full bg-[#FB2C36] px-7 py-3 text-center text-sm font-medium text-white shadow-[0_10px_24px_-12px_rgba(14,27,51,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#155DFC]"
-          >
-            Register Your Agency
-          </a> */}
+          {/* 6 FEATURES - INDIVIDUAL CARDS */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-1 max-w-2xl">
+            {HERO_FEATURES.map((item, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-3 rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 shadow-lg backdrop-blur-md transition-all duration-200 hover:border-white/30 hover:bg-black/65 min-h-[54px]"
+              >
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/10 backdrop-blur-sm shadow-sm">
+                  {item.icon}
+                </div>
+                <span className="text-xs sm:text-[12.5px] font-semibold text-white leading-tight">
+                  {item.title}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* RIGHT SIDE CONTACT FORM */}
         <form
           id="contact-form"
           onSubmit={handleSubmit}
-          className="w-full max-w-md scroll-mt-24 rounded-2xl bg-white p-6 shadow-xl md:p-8 lg:ml-auto"
+          className="w-full max-w-md scroll-mt-24 rounded-2xl bg-white px-6 pt-6 pb-14 shadow-xl md:px-8 md:pt-8 md:pb-16 lg:ml-auto"
         >
-          <h2 className="mb-1.5 text-center text-xl font-bold text-neutral-900 leading-snug text-balance">
+          <h2 className="mb-1.5 text-center text-[15px] sm:text-[16.5px] md:text-[17.5px] font-bold text-neutral-900 leading-snug tracking-tight whitespace-nowrap">
             Online Flight Booking App for Travel Agents
           </h2>
 
